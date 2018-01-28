@@ -34,14 +34,14 @@ public class AppTest {
 
     @Test
     public void testApp() {
-        String[] args = {"https://www.google.com", "mysite.map"};
+        String[] args = {"https://www.wiprodigital.com", "mysite.map"};
         WebCrawler mock = Mockito.mock(WebCrawler.class);
 
         App.main(args);
         UserInput input = new UserInput();
         verify(mock, atMost(1)).crawl(input);
 
-        assertTrue(outContent.toString().contains("Crawled https://www.google.com in "));
+        assertTrue(outContent.toString().contains("Crawled https://www.wiprodigital.com in "));
     }
 
 
@@ -59,7 +59,7 @@ public class AppTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testApp_NulFilename() {
-        String[] args = {"https://www.google", null};
+        String[] args = {"https://www.wiprodigital", null};
         App.main(args);
     }
 

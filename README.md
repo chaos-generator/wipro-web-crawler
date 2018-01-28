@@ -51,7 +51,7 @@ What you need to share with us:
 2. Start crawler
 3. Set user input as top level page
 4. Maybe read robots.txt
-5. Mayve apply robots.txt rules
+5. Maybe apply robots.txt rules
 6. Skip if page has been visited already
 7. Download html file
 8. Parse html file

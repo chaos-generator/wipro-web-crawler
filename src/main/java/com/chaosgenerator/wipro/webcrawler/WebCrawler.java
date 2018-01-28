@@ -2,12 +2,14 @@ package com.chaosgenerator.wipro.webcrawler;
 
 import com.chaosgenerator.wipro.input.UserInput;
 
+import java.net.URL;
+
 public class WebCrawler {
-    public void crawl(UserInput input){
+    public void crawl(UserInput input) {
+        URL domain = input.getDomainToCrawl();
+
+
         /**
-         * 3. Set user input as top level page
-         * 4. Maybe read robots.txt
-         * 5. Mayve apply robots.txt rules
          * 6. Skip if page has been visited already
          * 7. Download html file
          * 8. Parse html file
