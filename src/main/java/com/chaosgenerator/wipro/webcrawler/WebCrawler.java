@@ -2,6 +2,7 @@ package com.chaosgenerator.wipro.webcrawler;
 
 import com.chaosgenerator.wipro.webcrawler.pojo.UserInput;
 import com.chaosgenerator.wipro.webcrawler.pojo.Page;
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -83,10 +84,17 @@ public class WebCrawler implements Crawler {
             for (Page p : sitemap.keySet()) {
                 bw.write(p.toString());
                 bw.newLine();
+                if (p.getLinks() == null) {
+                    bw.newLine();
+                    bw.newLine();
+                    continue;
+                }
                 for (String link : p.getLinks()) {
                     // To avoid stopping writing the file in case of a temporary blip
+                    if (Strings.isNullOrEmpty(link)) continue;
                     try {
-                        bw.write("\t - " + link);
+
+                        bw.write("\t- " + link);
                         bw.newLine();
                     } catch (IOException e) {
                         e.printStackTrace();
