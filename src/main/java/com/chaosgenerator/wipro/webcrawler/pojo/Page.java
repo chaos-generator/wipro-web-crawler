@@ -7,11 +7,21 @@ import java.util.Objects;
 
 public class Page {
 
-    private String title;
     private final String url;
+    private String title;
+    private String error;
 
     public Page(String url) {
         this.url = url;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public Page setError(String error) {
+        this.error = error;
+        return this;
     }
 
     public String getUrl() {
@@ -22,8 +32,9 @@ public class Page {
         return title;
     }
 
-    public void setTitle(String title) {
+    public Page setTitle(String title) {
         this.title = title;
+        return this;
     }
 
     @Override
@@ -37,5 +48,19 @@ public class Page {
     @Override
     public int hashCode() {
         return Objects.hash(url);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder. append(this.url);
+        builder.append(": ");
+        if (this.title != null) {
+            builder.append(this.title);
+        }
+        if (this.error != null) {
+            builder.append(this.error);
+        }
+        return builder.toString();
     }
 }

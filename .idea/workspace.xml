@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c37e9e69-18c0-4d5d-9f11-882c9b468a88" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/App.java" afterPath="$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/App.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/input/UserInput.java" afterPath="$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/input/UserInput.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/webcrawler/WebCrawler.java" afterPath="$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/webcrawler/WebCrawler.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/chaosgenerator/wipro/webcrawler/AppTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/chaosgenerator/wipro/webcrawler/AppTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/chaosgenerator/wipro/webcrawler/WebCrawlerTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/chaosgenerator/wipro/webcrawler/WebCrawlerTest.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/webcrawler/pojo/Page.java" afterPath="$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/webcrawler/pojo/Page.java" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/chaosgenerator/wipro/webcrawler/pojo/PageTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/chaosgenerator/wipro/webcrawler/pojo/PageTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -28,21 +26,51 @@
       <file leaf-file-name="WebCrawler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/webcrawler/WebCrawler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+            <state relative-caret-position="355">
+              <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#436#437#0" expanded="true" />
-                <element signature="e#470#471#0" expanded="true" />
+                <element signature="e#532#533#0" expanded="true" />
+                <element signature="e#566#567#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WebCrawlerTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PageTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/chaosgenerator/wipro/webcrawler/pojo/PageTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="403">
+              <caret line="37" column="62" lean-forward="false" selection-start-line="37" selection-start-column="62" selection-end-line="37" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserInput.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/input/UserInput.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="178">
+              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#255#256#0" expanded="true" />
+                <element signature="e#293#294#0" expanded="true" />
+                <element signature="e#473#474#0" expanded="true" />
+                <element signature="e#509#510#0" expanded="true" />
+                <element signature="e#678#679#0" expanded="true" />
+                <element signature="e#712#713#0" expanded="true" />
+                <element signature="e#1235#1236#0" expanded="true" />
+                <element signature="e#1308#1309#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WebCrawlerTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/chaosgenerator/wipro/webcrawler/WebCrawlerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
+            <state relative-caret-position="1110">
               <caret line="74" column="76" lean-forward="true" selection-start-line="74" selection-start-column="76" selection-end-line="74" selection-end-column="76" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -372,13 +400,13 @@
         <option value="$PROJECT_DIR$/src/test/java/com/chaosgenerator/wipro/webcrawler/InputParserTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/input/InputParser.java" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/webcrawler/pojo/Page.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/chaosgenerator/wipro/webcrawler/pojo/PageTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/input/UserInput.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/App.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/chaosgenerator/wipro/webcrawler/AppTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/webcrawler/WebCrawler.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/chaosgenerator/wipro/webcrawler/WebCrawlerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/input/UserInput.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/webcrawler/WebCrawler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/webcrawler/pojo/Page.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/chaosgenerator/wipro/webcrawler/pojo/PageTest.java" />
       </list>
     </option>
   </component>
@@ -465,6 +493,16 @@
               <item name="wipro-web-crawler" type="b2602c69:ProjectViewProjectNode" />
               <item name="wipro-web-crawler" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="wipro" type="462c0819:PsiDirectoryNode" />
+              <item name="webcrawler" type="462c0819:PsiDirectoryNode" />
+              <item name="pojo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wipro-web-crawler" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wipro-web-crawler" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
@@ -501,8 +539,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="com.chaosgenerator.wipro.webcrawler" />
       <recent name="com.chaosgenerator.wipro.webcrawler.pojo" />
+      <recent name="com.chaosgenerator.wipro.webcrawler" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.chaosgenerator.wipro" />
@@ -523,7 +561,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.WebCrawlerTest.isSameDomainTest_DontVisitSubdomains">
+  <component name="RunManager" selected="JUnit.PageTest.toStringTest">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
@@ -544,7 +582,7 @@
       <module name="" />
       <envs />
     </configuration>
-    <configuration name="PageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PageTest.toStringTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.chaosgenerator.wipro.webcrawler.pojo.*" />
@@ -556,8 +594,8 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.chaosgenerator.wipro.webcrawler.pojo" />
       <option name="MAIN_CLASS_NAME" value="com.chaosgenerator.wipro.webcrawler.pojo.PageTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="toStringTest" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -730,19 +768,19 @@
       <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.PageTest" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.WebCrawlerTest.shouldSkipPageTest" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.com.chaosgenerator.wipro.webcrawler in wipro-web-crawler_test" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.WebCrawlerTest.isSameDomainTest_VisitSubdomains" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.WebCrawlerTest.isSameDomainTest_DontVisitSubdomains" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.WebCrawlerTest.shouldSkipPageTest" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.com.chaosgenerator.wipro.webcrawler in wipro-web-crawler_test" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.WebCrawlerTest.isSameDomainTest_VisitSubdomains" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.WebCrawlerTest.isSameDomainTest_DontVisitSubdomains" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.PageTest.toStringTest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.WebCrawlerTest.isSameDomainTest_DontVisitSubdomains" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.WebCrawlerTest.isSameDomainTest_VisitSubdomains" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.com.chaosgenerator.wipro.webcrawler in wipro-web-crawler_test" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.WebCrawlerTest.shouldSkipPageTest" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.PageTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.PageTest.toStringTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.WebCrawlerTest.isSameDomainTest_DontVisitSubdomains" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.WebCrawlerTest.isSameDomainTest_VisitSubdomains" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.com.chaosgenerator.wipro.webcrawler in wipro-web-crawler_test" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.WebCrawlerTest.shouldSkipPageTest" />
       </list>
     </recent_temporary>
   </component>
@@ -756,25 +794,25 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1517161380204</updated>
-      <workItem from="1517161381705" duration="6335000" />
+      <workItem from="1517161381705" duration="7192000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AppTest - 2018.01.28 at 18h 22m 31s.xml">
-      <configuration name="AppTest" configurationId="JUnit" />
+    <history-entry file="PageTest_toStringTest - 2018.01.28 at 19h 45m 26s.xml">
+      <configuration name="PageTest.toStringTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="AppTest - 2018.01.28 at 18h 26m 03s.xml">
-      <configuration name="AppTest" configurationId="JUnit" />
+    <history-entry file="PageTest_toStringTest - 2018.01.28 at 19h 45m 59s.xml">
+      <configuration name="PageTest.toStringTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="AppTest_testApp_invalidUrl - 2018.01.28 at 18h 26m 27s.xml">
-      <configuration name="AppTest.testApp_invalidUrl" configurationId="JUnit" />
+    <history-entry file="PageTest_toStringTest - 2018.01.28 at 19h 46m 11s.xml">
+      <configuration name="PageTest.toStringTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PageTest - 2018.01.28 at 18h 38m 56s.xml">
-      <configuration name="PageTest" configurationId="JUnit" />
+    <history-entry file="PageTest_toStringTest - 2018.01.28 at 19h 46m 37s.xml">
+      <configuration name="PageTest.toStringTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PageTest_PageTest - 2018.01.28 at 18h 37m 27s.xml">
-      <configuration name="PageTest.PageTest" configurationId="JUnit" />
+    <history-entry file="WebCrawlerTest_isSameDomainTest_DontVisitSubdomains - 2018.01.28 at 19h 32m 32s.xml">
+      <configuration name="WebCrawlerTest.isSameDomainTest_DontVisitSubdomains" configurationId="JUnit" />
     </history-entry>
     <history-entry file="WebCrawlerTest_isSameDomainTest_VisitSubdomains - 2018.01.28 at 19h 29m 56s.xml">
       <configuration name="WebCrawlerTest.isSameDomainTest_VisitSubdomains" configurationId="JUnit" />
@@ -793,7 +831,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6335000" />
+    <option name="totallyTimeSpent" value="7192000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -868,7 +906,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -923,36 +961,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/webcrawler/pojo/Page.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="29" column="37" lean-forward="true" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#898#0" expanded="true" />
-            <element signature="e#351#352#0" expanded="true" />
-            <element signature="e#381#382#0" expanded="true" />
-            <element signature="e#411#412#0" expanded="true" />
-            <element signature="e#437#438#0" expanded="true" />
-            <element signature="e#469#470#0" expanded="true" />
-            <element signature="e#497#498#0" expanded="true" />
-            <element signature="e#539#540#0" expanded="true" />
-            <element signature="e#573#574#0" expanded="true" />
-            <element signature="e#854#855#0" expanded="true" />
-            <element signature="e#894#895#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/chaosgenerator/wipro/webcrawler/pojo/PageTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/src.zip!/java/util/List.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-160">
@@ -1002,47 +1010,69 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/input/UserInput.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="178">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#255#256#0" expanded="true" />
             <element signature="e#293#294#0" expanded="true" />
-            <element signature="e#356#357#0" expanded="true" />
-            <element signature="e#410#411#0" expanded="true" />
-            <element signature="e#447#448#0" expanded="true" />
-            <element signature="e#483#484#0" expanded="true" />
-            <element signature="e#538#539#0" expanded="true" />
-            <element signature="e#588#589#0" expanded="true" />
-            <element signature="e#626#627#0" expanded="true" />
-            <element signature="e#660#661#0" expanded="true" />
-            <element signature="e#714#715#0" expanded="true" />
-            <element signature="e#760#761#0" expanded="true" />
-            <element signature="e#1157#1158#0" expanded="true" />
-            <element signature="e#1230#1231#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/webcrawler/WebCrawler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#436#437#0" expanded="true" />
-            <element signature="e#470#471#0" expanded="true" />
+            <element signature="e#473#474#0" expanded="true" />
+            <element signature="e#509#510#0" expanded="true" />
+            <element signature="e#678#679#0" expanded="true" />
+            <element signature="e#712#713#0" expanded="true" />
+            <element signature="e#1235#1236#0" expanded="true" />
+            <element signature="e#1308#1309#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/chaosgenerator/wipro/webcrawler/WebCrawlerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
+        <state relative-caret-position="1110">
           <caret line="74" column="76" lean-forward="true" selection-start-line="74" selection-start-column="76" selection-end-line="74" selection-end-column="76" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/webcrawler/pojo/Page.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="61" column="29" lean-forward="false" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#1475#0" expanded="true" />
+            <element signature="e#377#378#0" expanded="true" />
+            <element signature="e#407#408#0" expanded="true" />
+            <element signature="e#439#440#0" expanded="true" />
+            <element signature="e#467#468#0" expanded="true" />
+            <element signature="e#594#595#0" expanded="true" />
+            <element signature="e#620#621#0" expanded="true" />
+            <element signature="e#652#653#0" expanded="true" />
+            <element signature="e#680#681#0" expanded="true" />
+            <element signature="e#1058#1059#0" expanded="true" />
+            <element signature="e#1098#1099#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/chaosgenerator/wipro/webcrawler/WebCrawler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#532#533#0" expanded="true" />
+            <element signature="e#566#567#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/chaosgenerator/wipro/webcrawler/pojo/PageTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="37" column="62" lean-forward="false" selection-start-line="37" selection-start-column="62" selection-end-line="37" selection-end-column="62" />
+          <folding />
         </state>
       </provider>
     </entry>

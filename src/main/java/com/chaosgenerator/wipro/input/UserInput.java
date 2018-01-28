@@ -13,24 +13,27 @@ public class UserInput {
         return visitSubDomains;
     }
 
-    public void setVisitSubDomains(boolean visitSubDomains) {
+    public UserInput setVisitSubDomains(boolean visitSubDomains) {
         this.visitSubDomains = visitSubDomains;
+        return this;
     }
 
     public URL getDomainToCrawl() {
         return domainToCrawl;
     }
 
-    public void setDomainToCrawl(URL domainToCrawl) {
+    public UserInput setDomainToCrawl(URL domainToCrawl) {
         this.domainToCrawl = domainToCrawl;
+        return this;
     }
 
     public String getSitemapPath() {
         return sitemapPath;
     }
 
-    public void setSitemapPath(String sitemapPath) {
+    public UserInput setSitemapPath(String sitemapPath) {
         this.sitemapPath = sitemapPath;
+        return this;
     }
 
     @Override

@@ -2,8 +2,11 @@ package com.chaosgenerator.wipro.webcrawler;
 
 import com.chaosgenerator.wipro.input.UserInput;
 import com.chaosgenerator.wipro.webcrawler.pojo.Page;
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -38,10 +41,8 @@ public class WebCrawler {
         // ConcurrentModificationException
         int cursor = 0;
 
-        StringBuilder builder = new StringBuilder();
         while (cursor < toVisit.size()) {
             String urlToVisit = toVisit.get(cursor);
-            builder.append(String.format("- %s", urlToVisit));
             cursor++;
 
             //Skips pages in different domains
@@ -49,6 +50,16 @@ public class WebCrawler {
 
             // Skips pages already visited.
             if (alreadyVisited(sitemap, urlToVisit)) continue;
+
+            Page currentPage = new Page(urlToVisit);
+            Document doc;
+            try {
+                doc = Jsoup.connect(urlToVisit).get();
+            } catch (Exception e) {//This will capture 404, TLS/SSL errors, mimetype errors and other errors returned by connect() and get()
+                currentPage.setError(e.getMessage());
+                sitemap.put(currentPage, null);
+                continue;
+            }
         }
 
         /**
