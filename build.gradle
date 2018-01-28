@@ -23,4 +23,7 @@ jar {
                 'Main-Class': 'com.chaosgenerator.wipro.App'
         )
     }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }

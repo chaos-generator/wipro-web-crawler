@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import com.chaosgenerator.wipro.App;
 import com.chaosgenerator.wipro.input.UserInput;
+import com.google.common.collect.Maps;
 import org.junit.After;
 
 
@@ -34,13 +35,13 @@ public class AppTest {
 
     @Test
     public void testApp() {
-        String[] args = {"https://www.wiprodigital.com", "mysite.map"};
+        String[] args = {"http://www.example.com", "./example.map"};
         WebCrawler mock = Mockito.mock(WebCrawler.class);
 
         App.main(args);
         verify(mock, atMost(1)).crawl();
 
-        assertTrue(outContent.toString().contains("Crawled https://www.wiprodigital.com in "));
+        assertTrue(outContent.toString().contains("Crawled http://www.example.com in "));
     }
 
     @Test(expected = IllegalArgumentException.class)

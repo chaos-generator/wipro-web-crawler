@@ -53,7 +53,7 @@ public class WebCrawler {
             cursor++;
 
             //Skips pages in different domains
-            if (isSameDomain(home, urlToVisit)) continue;
+            if (!isSameDomain(home, urlToVisit)) continue;
 
             // Skips pages already visited.
             if (alreadyVisited(sitemap, urlToVisit)) continue;
@@ -69,25 +69,31 @@ public class WebCrawler {
             processLinks(home, toVisit, currentPage, doc);
 
             processImages(home, currentPage, doc, currentPage.getLinks());
+
+            sitemap.put(currentPage, null);
         }
 
         saveToFile(sitemap);
     }
 
-    private void saveToFile(Map<Page, String> sitemap) {
+    public void saveToFile(Map<Page, String> sitemap) {
         try (FileWriter fw = new FileWriter(input.getSitemapPath());
              BufferedWriter bw = new BufferedWriter(fw)) {
 
             for (Page p : sitemap.keySet()) {
                 bw.write(p.toString());
+                bw.newLine();
                 for (String link : p.getLinks()) {
                     // To avoid stopping writing the file in case of a temporary blip
                     try {
-                        bw.write("/t - " + link);
+                        bw.write("\t - " + link);
+                        bw.newLine();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
+                bw.newLine();
+                bw.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
