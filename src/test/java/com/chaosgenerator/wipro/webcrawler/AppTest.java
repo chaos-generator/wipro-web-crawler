@@ -38,12 +38,10 @@ public class AppTest {
         WebCrawler mock = Mockito.mock(WebCrawler.class);
 
         App.main(args);
-        UserInput input = new UserInput();
-        verify(mock, atMost(1)).crawl(input);
+        verify(mock, atMost(1)).crawl();
 
         assertTrue(outContent.toString().contains("Crawled https://www.wiprodigital.com in "));
     }
-
 
     @Test(expected = IllegalArgumentException.class)
     public void testApp_invalidUrl() {

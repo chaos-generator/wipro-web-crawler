@@ -11,8 +11,8 @@ public class App {
         Stopwatch stopwatch = new Stopwatch().start();
         UserInput input = InputParser.parse(args);
 
-        WebCrawler crawler = new WebCrawler();
-        crawler.crawl(input);
+        WebCrawler crawler = new WebCrawler(input);
+        crawler.crawl();
 
         stopwatch.stop();
         System.out.println(String.format("Crawled %s in %d  milliseconds", input.getDomainToCrawl(), stopwatch.elapsedMillis()));

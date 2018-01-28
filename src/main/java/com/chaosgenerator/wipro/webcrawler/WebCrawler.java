@@ -12,13 +12,16 @@ import java.util.Map;
 
 public class WebCrawler {
 
+    private final UserInput input;
+
+    public WebCrawler(UserInput input){
+        this.input = input;
+    }
+
     /**
      * Method to crawl a website and retrieve all it's links and images.
-     *
-     * @param input an UserInput object with the domain to visit and the path
-     *              to the file to save.
      */
-    public void crawl(UserInput input) {
+    public void crawl() {
         URL home = input.getDomainToCrawl();
         Page homepage = new Page(home.toString());
 
@@ -42,7 +45,7 @@ public class WebCrawler {
             cursor++;
 
             //Skips pages in different domains
-            if (sameDomain(home, urlToVisit)) continue;
+            if (isSameDomain(home, urlToVisit)) continue;
 
             // Skips pages already visited.
             if (alreadyVisited(sitemap, urlToVisit)) continue;
@@ -63,12 +66,18 @@ public class WebCrawler {
 
     }
 
-    boolean sameDomain(URL home, String urlToVisit) {
+    boolean isSameDomain(URL home, String urlToVisit) {
         URL currentUrl;
         try {
             currentUrl = new URL(urlToVisit);
-            if (!currentUrl.getHost().equals(home.getHost())) {
-                return true;
+            if(input.isVisitSubDomains()) {
+                if (currentUrl.getHost().endsWith(home.getHost())) {
+                    return true;
+                }
+            } else {
+                if (currentUrl.getHost().equals(home.getHost())) {
+                    return true;
+                }
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();//log error and continue

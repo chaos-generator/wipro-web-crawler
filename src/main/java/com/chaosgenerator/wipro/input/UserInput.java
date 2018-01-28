@@ -7,6 +7,15 @@ public class UserInput {
 
     private URL domainToCrawl;
     private String sitemapPath;
+    private boolean visitSubDomains;
+
+    public boolean isVisitSubDomains() {
+        return visitSubDomains;
+    }
+
+    public void setVisitSubDomains(boolean visitSubDomains) {
+        this.visitSubDomains = visitSubDomains;
+    }
 
     public URL getDomainToCrawl() {
         return domainToCrawl;
