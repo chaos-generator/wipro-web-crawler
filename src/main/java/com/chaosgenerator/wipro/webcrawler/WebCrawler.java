@@ -13,7 +13,9 @@ public class WebCrawler {
 
     /**
      * Method to crawl a website and retrieve all it's links and images.
-     * @param input
+     *
+     * @param input an UserInput object with the domain to visit and the path
+     *              to the file to save.
      */
     public void crawl(UserInput input) {
         URL domain = input.getDomainToCrawl();
@@ -37,6 +39,11 @@ public class WebCrawler {
             String url = toVisit.get(cursor);
             builder.append(String.format("- %s", url));
             cursor++;
+
+            // Skips pages already visited.
+            if (shouldSkipPage(sitemap, url)) {
+                continue;
+            }
         }
 
         /**
@@ -51,5 +58,12 @@ public class WebCrawler {
          * 14. Add links a to toVisit list, filtering out links from other websites.
          * 15. save to file (consider that links written before, as skipped to avoid circular references)
          * 16. maybe format the file
-         */    }
+         */
+
+    }
+
+    public boolean shouldSkipPage(Map<Page, String> sitemap, String url) {
+        Page currentPage = new Page(url);
+        return sitemap.containsKey(currentPage);
+    }
 }
