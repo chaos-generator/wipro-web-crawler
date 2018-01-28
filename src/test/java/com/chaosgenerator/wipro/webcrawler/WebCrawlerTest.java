@@ -140,7 +140,7 @@ public class WebCrawlerTest {
      */
 
     @Test
-    public void normaliseLink_fullpath() {
+    public void normaliseAnchorLink_fullpath() {
         WebCrawler crawler = new WebCrawler(new UserInput());
         URL home = null;
         try {
@@ -152,12 +152,12 @@ public class WebCrawlerTest {
         when(link.attr("href")).thenReturn("http://wiprodigital.com/who-we-are/");
 
         String expected = "http://wiprodigital.com/who-we-are/";
-        String actual = crawler.normaliseLink(home, link);
+        String actual = crawler.normaliseAnchorLink(home, link);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void normaliseLink_relativeProtocol() {
+    public void normaliseAnchorLink_relativeProtocol() {
         WebCrawler crawler = new WebCrawler(new UserInput());
         URL home = null;
         try {
@@ -169,12 +169,12 @@ public class WebCrawlerTest {
         when(link.attr("href")).thenReturn("//wiprodigital.com/who-we-are/");
 
         String expected = "http://wiprodigital.com/who-we-are/";
-        String actual = crawler.normaliseLink(home, link);
+        String actual = crawler.normaliseAnchorLink(home, link);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void normaliseLink_relativeDomain() {
+    public void normaliseAnchorLink_relativeDomain() {
         WebCrawler crawler = new WebCrawler(new UserInput());
         URL home = null;
         try {
@@ -186,12 +186,12 @@ public class WebCrawlerTest {
         when(link.attr("href")).thenReturn("/who-we-are/");
 
         String expected = "http://wiprodigital.com/who-we-are/";
-        String actual = crawler.normaliseLink(home, link);
+        String actual = crawler.normaliseAnchorLink(home, link);
         assertEquals(expected, actual);
     }
 
     @Test
-    public void normaliseLink_ignoreAnchors() {
+    public void normaliseAnchorLink_ignoreAnchors() {
         WebCrawler crawler = new WebCrawler(new UserInput());
         URL home = null;
         try {
@@ -202,10 +202,60 @@ public class WebCrawlerTest {
         Element link = Mockito.mock(Element.class);
         when(link.attr("href")).thenReturn("#who-we-are");
 
-        String actual = crawler.normaliseLink(home, link);
+        String actual = crawler.normaliseAnchorLink(home, link);
         assertNull(actual);
     }
 
+    @Test
+    public void normaliseImageLink_fullpath() {
+        WebCrawler crawler = new WebCrawler(new UserInput());
+        URL home = null;
+        try {
+            home = new URL("http://wiprodigital.com");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        Element link = Mockito.mock(Element.class);
+        when(link.attr("src")).thenReturn("http://wiprodigital.com/images/logo.png");
+
+        String expected = "http://wiprodigital.com/images/logo.png";
+        String actual = crawler.normaliseImageLink(home, link);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void normaliseImageLink_relativeProtocol() {
+        WebCrawler crawler = new WebCrawler(new UserInput());
+        URL home = null;
+        try {
+            home = new URL("http://wiprodigital.com");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        Element link = Mockito.mock(Element.class);
+        when(link.attr("src")).thenReturn("//wiprodigital.com/images/logo.png");
+
+        String expected = "http://wiprodigital.com/images/logo.png";
+        String actual = crawler.normaliseImageLink(home, link);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void normaliseImageLink_relativeDomain() {
+        WebCrawler crawler = new WebCrawler(new UserInput());
+        URL home = null;
+        try {
+            home = new URL("http://wiprodigital.com");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        Element link = Mockito.mock(Element.class);
+        when(link.attr("src")).thenReturn("/images/logo.png");
+
+        String expected = "http://wiprodigital.com/images/logo.png";
+        String actual = crawler.normaliseImageLink(home, link);
+        assertEquals(expected, actual);
+    }
 
     @Test
     public void setPageTitle() {

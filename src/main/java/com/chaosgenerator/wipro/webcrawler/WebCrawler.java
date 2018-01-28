@@ -111,7 +111,7 @@ public class WebCrawler implements Crawler {
     private void processImages(URL home, Page currentPage, Document doc, Set<String> linksSet) {
         Elements imgs = doc.select("img[src]");
         for (Element image : imgs) {
-            String linkUrl = normaliseLink(home, image);
+            String linkUrl = normaliseAnchorLink(home, image);
             if (linkUrl != null) {
                 linksSet.add(linkUrl);
             }
@@ -123,7 +123,7 @@ public class WebCrawler implements Crawler {
         Elements links = doc.select("a[href]");
         HashSet<String> linksSet = Sets.newHashSet();
         for (Element link : links) {
-            String linkUrl = normaliseLink(home, link);
+            String linkUrl = normaliseAnchorLink(home, link);
             if (linkUrl == null) {
                 continue;
             }
@@ -140,10 +140,26 @@ public class WebCrawler implements Crawler {
      * @param link the link element from the html
      * @return string with the normalised full path link or null if the link was an anchor.
      */
-    public String normaliseLink(URL home, Element link) {
-        String linkUrl = link.attr("href");
-        linkUrl = linkUrl.trim();
+    public String normaliseAnchorLink(URL home, Element link) {
+        String linkUrl = link.attr("href").trim();
 
+        return normaliseLink(home, linkUrl);
+    }
+
+    /**
+     * Normalises all image links to the full path URL.
+     *
+     * @param home the home page url
+     * @param image the image element from the html
+     * @return string with the normalised full path image.
+     */
+    public String normaliseImageLink(URL home, Element image) {
+        String linkUrl = image.attr("src").trim();
+
+        return normaliseLink(home, linkUrl);
+    }
+
+    private String normaliseLink(URL home, String linkUrl) {
         if (linkUrl.startsWith("//")) { // handle relative protocols
             linkUrl = home.getProtocol() + ":" + linkUrl;
         } else if (linkUrl.startsWith("/")) { // handle relative domains
