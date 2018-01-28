@@ -1,9 +1,10 @@
 package com.chaosgenerator.wipro;
 
-import com.chaosgenerator.wipro.webcrawler.input.InputParser;
+import com.chaosgenerator.wipro.webcrawler.Crawler;
 import com.chaosgenerator.wipro.webcrawler.pojo.UserInput;
 import com.chaosgenerator.wipro.webcrawler.WebCrawler;
 import com.google.common.base.Stopwatch;
+import com.chaosgenerator.wipro.webcrawler.input.InputParser;
 
 public class App {
 
@@ -11,7 +12,7 @@ public class App {
         Stopwatch stopwatch = new Stopwatch().start();
         UserInput input = InputParser.parse(args);
 
-        WebCrawler crawler = new WebCrawler(input);
+        Crawler crawler = new WebCrawler(input);
         crawler.crawl();
 
         stopwatch.stop();

@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class WebCrawler {
+public class WebCrawler implements Crawler {
 
     private final UserInput input;
 

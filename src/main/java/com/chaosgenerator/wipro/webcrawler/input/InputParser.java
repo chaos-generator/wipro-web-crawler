@@ -7,6 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class InputParser {
+
     public static UserInput parse(String[] args) {
         UserInput input = new UserInput();
         if (args == null || args.length < 2) {
