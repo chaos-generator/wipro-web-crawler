@@ -119,4 +119,5 @@ Where:
 - Allows for distribution
 - Generate a pretty site map  
 - Add more functional tests
-- Add wiremock to for an end to end test, with a mocked 
+- Add wiremock to for an end to end test, with a mocked
+- Add proper logging 

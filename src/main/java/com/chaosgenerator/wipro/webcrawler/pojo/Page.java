@@ -4,15 +4,26 @@
 package com.chaosgenerator.wipro.webcrawler.pojo;
 
 import java.util.Objects;
+import java.util.Set;
 
 public class Page {
 
     private final String url;
     private String title;
     private String error;
+    private Set<String> links;
 
     public Page(String url) {
         this.url = url;
+    }
+
+    public Set<String> getLinks() {
+        return links;
+    }
+
+    public Page setLinks(Set<String> links) {
+        this.links = links;
+        return this;
     }
 
     public String getError() {

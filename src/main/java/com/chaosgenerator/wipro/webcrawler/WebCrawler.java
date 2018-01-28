@@ -4,20 +4,27 @@ import com.chaosgenerator.wipro.input.UserInput;
 import com.chaosgenerator.wipro.webcrawler.pojo.Page;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class WebCrawler {
 
     private final UserInput input;
 
-    public WebCrawler(UserInput input){
+    public WebCrawler(UserInput input) {
         this.input = input;
     }
 
@@ -59,19 +66,78 @@ public class WebCrawler {
 
             setPageTitle(currentPage, doc);
 
-            Elements imgs = doc.select("img[src]");
-            Elements links = doc.select("a[href]");
+            processLinks(home, toVisit, currentPage, doc);
 
+            processImages(home, currentPage, doc, currentPage.getLinks());
         }
 
-        /**
-         * 12. Create page object with title, url and list of links.
-         * 13. Add page to a map
-         * 14. Add links a to toVisit list, filtering out links from other websites.
-         * 15. save to file (consider that links written before, as skipped to avoid circular references)
-         * 16. maybe format the file
-         */
+        saveToFile(sitemap);
+    }
 
+    private void saveToFile(Map<Page, String> sitemap) {
+        try (FileWriter fw = new FileWriter(input.getSitemapPath());
+             BufferedWriter bw = new BufferedWriter(fw)) {
+
+            for (Page p : sitemap.keySet()) {
+                bw.write(p.toString());
+                for (String link : p.getLinks()) {
+                    // To avoid stopping writing the file in case of a temporary blip
+                    try {
+                        bw.write("/t - " + link);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void processImages(URL home, Page currentPage, Document doc, Set<String> linksSet) {
+        Elements imgs = doc.select("img[src]");
+        for (Element image : imgs) {
+            String linkUrl = normaliseLink(home, image);
+            if (linkUrl != null) {
+                linksSet.add(linkUrl);
+            }
+        }
+        currentPage.setLinks(linksSet);
+    }
+
+    private void processLinks(URL home, List<String> toVisit, Page currentPage, Document doc) {
+        Elements links = doc.select("a[href]");
+        HashSet<String> linksSet = Sets.newHashSet();
+        for (Element link : links) {
+            String linkUrl = normaliseLink(home, link);
+            if (linkUrl == null) {
+                continue;
+            }
+            linksSet.add(linkUrl);
+            toVisit.add(linkUrl);
+        }
+        currentPage.setLinks(linksSet);
+    }
+
+    /**
+     * Normalises all links to the full path URL.
+     *
+     * @param home the home page url
+     * @param link the link element from the html
+     * @return string with the normalised full path link or null if the link was an anchor.
+     */
+    public String normaliseLink(URL home, Element link) {
+        String linkUrl = link.attr("href");
+        linkUrl = linkUrl.trim();
+
+        if (linkUrl.startsWith("//")) { // handle relative protocols
+            linkUrl = home.getProtocol() + ":" + linkUrl;
+        } else if (linkUrl.startsWith("/")) { // handle relative domains
+            linkUrl = home.toString() + linkUrl;
+        } else if (linkUrl.startsWith("#")) { // ignore anchors
+            linkUrl = null;
+        }
+        return linkUrl;
     }
 
     void setPageTitle(Page currentPage, Document doc) {
@@ -95,7 +161,7 @@ public class WebCrawler {
         URL currentUrl;
         try {
             currentUrl = new URL(urlToVisit);
-            if(input.isVisitSubDomains()) {
+            if (input.isVisitSubDomains()) {
                 if (currentUrl.getHost().endsWith(home.getHost())) {
                     return true;
                 }
