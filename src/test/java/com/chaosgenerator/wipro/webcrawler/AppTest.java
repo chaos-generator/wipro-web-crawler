@@ -1,34 +1,21 @@
 package com.chaosgenerator.wipro.webcrawler;
 
+import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertTrue;
+
+import com.chaosgenerator.wipro.App;
+import com.chaosgenerator.wipro.input.UserInput;
 import org.junit.After;
 
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 public class AppTest {
-    /**
-     * 1. Get user input
-     * 2. Start crawler
-     * 3. Set user input as top level page
-     * 4. Maybe read robots.txt
-     * 5. Mayve apply robots.txt rules
-     * 6. Skip if page has been visited already
-     * 7. Download html file
-     * 8. Parse html file
-     * 9. Extract title from file
-     * 10. Extract links from file
-     * 11. Maybe consider spawning threads to process multiple pages at the same time
-     * 12. Create page object with title, url and list of links.
-     * 13. Add page to a map
-     * 14. Add links a to toVisit list, filtering out links from other websites.
-     * 15. save to file (consider that links written before, as skipped to avoid circular references)
-     * 16. maybe format the file
-     */
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
@@ -47,10 +34,38 @@ public class AppTest {
 
     @Test
     public void testApp() {
-        String[] args = {"website"};
+        String[] args = {"https://www.google.com", "mysite.map"};
+        WebCrawler mock = Mockito.mock(WebCrawler.class);
+
         App.main(args);
-        assertTrue(outContent.toString().contains("Crawled website in "));
+        UserInput input = new UserInput();
+        verify(mock, atMost(1)).crawl(input);
+
+        assertTrue(outContent.toString().contains("Crawled https://www.google.com in "));
     }
 
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testApp_invalidUrl() {
+        String[] args = {"something invalid", "mysite.map"};
+        App.main(args);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testApp_NullUrl() {
+        String[] args = {null, "mysite.map"};
+        App.main(args);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testApp_NulFilename() {
+        String[] args = {"https://www.google", null};
+        App.main(args);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testApp_EmptyFilename() {
+        String[] args = {null, ""};
+        App.main(args);
+    }
 }
