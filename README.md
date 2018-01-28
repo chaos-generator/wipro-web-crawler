@@ -80,6 +80,8 @@ only read the new features list, but haven't had a chance to work with it yet.
 As java is my choice of language, I'll use JUnit for unit tests and Mockito to
 create mocks. Jsoup was chosen as the lib to parse the HTML.
 
+I also added Google's guava, as the helper methods included in that library are
+life-saving.
 
 ### How to build
 dependencies: 
