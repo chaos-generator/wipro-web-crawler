@@ -1,7 +1,7 @@
 package com.chaosgenerator.wipro;
 
-import com.chaosgenerator.wipro.input.InputParser;
-import com.chaosgenerator.wipro.input.UserInput;
+import com.chaosgenerator.wipro.webcrawler.input.InputParser;
+import com.chaosgenerator.wipro.webcrawler.pojo.UserInput;
 import com.chaosgenerator.wipro.webcrawler.WebCrawler;
 import com.google.common.base.Stopwatch;
 

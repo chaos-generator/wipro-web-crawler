@@ -1,7 +1,7 @@
 package com.chaosgenerator.wipro.webcrawler;
 
-import com.chaosgenerator.wipro.input.InputParser;
-import com.chaosgenerator.wipro.input.UserInput;
+import com.chaosgenerator.wipro.webcrawler.input.InputParser;
+import com.chaosgenerator.wipro.webcrawler.pojo.UserInput;
 import org.junit.Test;
 
 import java.net.MalformedURLException;
@@ -25,6 +25,18 @@ public class InputParserTest {
         String[] args = {"https://www.wiprodigital.com", "./mysite.map"};
         UserInput actual = InputParser.parse(args);
         assertEquals(expected, actual);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testUserInput_null(){
+        String[] args = null;
+        UserInput actual = InputParser.parse(args);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testUserInput_missing(){
+        String[] args = {"https://www.wiprodigital.com"};
+        UserInput actual = InputParser.parse(args);
     }
 
 }

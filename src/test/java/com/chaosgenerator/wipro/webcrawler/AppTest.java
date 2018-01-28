@@ -4,8 +4,6 @@ import static org.mockito.Mockito.*;
 import static org.junit.Assert.assertTrue;
 
 import com.chaosgenerator.wipro.App;
-import com.chaosgenerator.wipro.input.UserInput;
-import com.google.common.collect.Maps;
 import org.junit.After;
 
 

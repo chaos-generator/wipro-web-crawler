@@ -1,6 +1,6 @@
 package com.chaosgenerator.wipro.webcrawler;
 
-import com.chaosgenerator.wipro.input.UserInput;
+import com.chaosgenerator.wipro.webcrawler.pojo.UserInput;
 import com.chaosgenerator.wipro.webcrawler.pojo.Page;
 import com.google.common.collect.Maps;
 import org.jsoup.nodes.Document;

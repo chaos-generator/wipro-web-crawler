@@ -1,5 +1,6 @@
-package com.chaosgenerator.wipro.input;
+package com.chaosgenerator.wipro.webcrawler.input;
 
+import com.chaosgenerator.wipro.webcrawler.pojo.UserInput;
 import com.google.common.base.Strings;
 
 import java.net.MalformedURLException;

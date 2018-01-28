@@ -1,4 +1,4 @@
-package com.chaosgenerator.wipro.input;
+package com.chaosgenerator.wipro.webcrawler.pojo;
 
 import java.net.URL;
 import java.util.Objects;
