@@ -2,7 +2,6 @@ package com.chaosgenerator.wipro.webcrawler;
 
 import com.chaosgenerator.wipro.input.UserInput;
 import com.chaosgenerator.wipro.webcrawler.pojo.Page;
-import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.jsoup.Jsoup;
@@ -52,19 +51,15 @@ public class WebCrawler {
             if (alreadyVisited(sitemap, urlToVisit)) continue;
 
             Page currentPage = new Page(urlToVisit);
-            Document doc;
-            try {
-                doc = Jsoup.connect(urlToVisit).get();
-            } catch (Exception e) {//This will capture 404, TLS/SSL errors, mimetype errors and other errors returned by connect() and get()
-                currentPage.setError(e.getMessage());
-                sitemap.put(currentPage, null);
-                continue;
-            }
+
+            Document doc = getDocument(urlToVisit, currentPage, sitemap);
+
+            if (doc == null) continue;
+
+
         }
 
         /**
-         * 7. Download html file
-         * 8. Parse html file
          * 9. Extract title from file
          * 10. Extract links from file
          * 11. Maybe consider spawning threads to process multiple pages at the same time
@@ -75,6 +70,18 @@ public class WebCrawler {
          * 16. maybe format the file
          */
 
+    }
+
+    public Document getDocument(String urlToVisit, Page currentPage, Map<Page, String> sitemap) {
+        Document doc;
+        try {
+            doc = Jsoup.connect(urlToVisit).get();
+        } catch (Exception e) {//This will capture 404, TLS/SSL errors, mimetype errors and other errors returned by connect() and get()
+            currentPage.setError(e.toString());
+            sitemap.put(currentPage, null);
+            return null;
+        }
+        return doc;
     }
 
     boolean isSameDomain(URL home, String urlToVisit) {

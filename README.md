@@ -83,6 +83,11 @@ create mocks. Jsoup was chosen as the lib to parse the HTML.
 I also added Google's guava, as the helper methods included in that library are
 life-saving.
 
+All methods have been created as public to facilitate testing. It is possible
+to test private methods too, but it requires more code. So in order to keep the
+time used to write this to a minimum, I'm using this as a shortcut. Ideally,
+all methods in WebCrawler should be private, except for the crawl method.
+ 
 ### How to build
 dependencies: 
 - [gradle](https://gradle.org/)
