@@ -38,7 +38,7 @@ public class WebCrawler implements Crawler {
 
         // Hashmaps have constant time search.
         // I'm using this map instead of a list because of it.
-        Map<Page, String> sitemap = Maps.newHashMap();
+        Map<String, Page> sitemap = Maps.newHashMap();
 
         // Create list of pages to visit and add home page
         List<String> toVisit = Lists.newArrayList();
@@ -71,40 +71,48 @@ public class WebCrawler implements Crawler {
 
             processImages(home, currentPage, doc, currentPage.getLinks());
 
-            sitemap.put(currentPage, null);
+            sitemap.put(currentPage.getUrl(), currentPage);
         }
 
-        saveToFile(sitemap);
+        saveToFile(sitemap, homepage);
     }
 
-    public void saveToFile(Map<Page, String> sitemap) {
+    public void saveToFile(Map<String, Page> sitemap, Page home) {
         try (FileWriter fw = new FileWriter(input.getSitemapPath());
              BufferedWriter bw = new BufferedWriter(fw)) {
 
-            for (Page p : sitemap.keySet()) {
-                bw.write(p.toString());
-                bw.newLine();
-                if (p.getLinks() == null) {
-                    bw.newLine();
-                    bw.newLine();
-                    continue;
-                }
-                for (String link : p.getLinks()) {
-                    // To avoid stopping writing the file in case of a temporary blip
-                    if (Strings.isNullOrEmpty(link)) continue;
-                    try {
+            StringBuilder identation = new StringBuilder();
+            identation.append("\t");
 
-                        bw.write("\t- " + link);
-                        bw.newLine();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                bw.newLine();
-                bw.newLine();
-            }
+            writePage(sitemap, home, bw, identation);
+
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    void writePage(Map<String, Page> sitemap, Page parent, BufferedWriter bw, StringBuilder identation) throws IOException {
+        bw.write(parent.toString());
+        if (parent.getLinks() == null) {
+            return;
+        }
+        for (String s : parent.getLinks()) {
+            Page currPage = sitemap.get(s);
+            bw.write(identation.toString());
+            bw.write(currPage.toString());
+            bw.newLine();
+            if (currPage.getLinks() == null) {
+                bw.newLine();
+                bw.newLine();
+                continue;
+            }
+            identation.append("\t");
+            for (String link : currPage.getLinks()) {
+                writePage(sitemap, currPage, bw, identation);
+            }
+            identation.delete(0, 2);
+            bw.newLine();
+            bw.newLine();
         }
     }
 
@@ -175,13 +183,13 @@ public class WebCrawler implements Crawler {
         currentPage.setTitle(title);
     }
 
-    public Document getDocument(String urlToVisit, Page currentPage, Map<Page, String> sitemap) {
+    public Document getDocument(String urlToVisit, Page currentPage, Map<String, Page> sitemap) {
         Document doc;
         try {
             doc = Jsoup.connect(urlToVisit).get();
         } catch (Exception e) {//This will capture 404, TLS/SSL errors, mimetype errors and other errors returned by connect() and get()
             currentPage.setError(e.toString());
-            sitemap.put(currentPage, null);
+            sitemap.put(currentPage.getUrl(), currentPage);
             return null;
         }
         return doc;
@@ -207,8 +215,7 @@ public class WebCrawler implements Crawler {
         return false;
     }
 
-    public boolean alreadyVisited(Map<Page, String> sitemap, String url) {
-        Page currentPage = new Page(url);
-        return sitemap.containsKey(currentPage);
+    public boolean alreadyVisited(Map<String, Page> sitemap, String url) {
+        return sitemap.containsKey(url);
     }
 }

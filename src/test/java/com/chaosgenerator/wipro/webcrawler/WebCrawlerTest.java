@@ -19,7 +19,7 @@ public class WebCrawlerTest {
 
     @Test
     public void alreadyVisited() {
-        Map<Page, String> sitemap = Maps.newHashMap();
+        Map<String, Page> sitemap = Maps.newHashMap();
 
         WebCrawler crawler = new WebCrawler(new UserInput());
 
@@ -29,7 +29,7 @@ public class WebCrawlerTest {
 
         // Add page visited to list
         Page validPage1 = new Page(firstUrl);
-        sitemap.put(validPage1, null);
+        sitemap.put(validPage1.getUrl(), validPage1);
 
         // Visit second page
         String secondUrl = "http://wiprodigital.com/who-we-are/";
@@ -37,7 +37,7 @@ public class WebCrawlerTest {
 
         // Add page visited to list
         Page validPage2 = new Page(secondUrl);
-        sitemap.put(validPage2, null);
+        sitemap.put(validPage2.getUrl(), validPage2);
 
         // Pages have been visited already
         assertTrue(crawler.alreadyVisited(sitemap, validPage1.getUrl()));
@@ -88,7 +88,7 @@ public class WebCrawlerTest {
         WebCrawler crawler = new WebCrawler(new UserInput());
         String urlToVisit = "https://www.google.com";
         Page currentPage = null;
-        Map<Page, String> sitemap = null;
+        Map<String, Page> sitemap = null;
         Document doc = crawler.getDocument(urlToVisit, currentPage, sitemap);
         assertNotNull(doc);
         // Correct as of 28/01/2018
@@ -100,7 +100,7 @@ public class WebCrawlerTest {
         WebCrawler crawler = new WebCrawler(new UserInput());
         String urlToVisit = "https://www.thisdomaindonotexistandshouldcontinuenotexisting.com";
         Page currentPage = new Page(urlToVisit);
-        Map<Page, String> sitemap = Maps.newHashMap();
+        Map<String, Page> sitemap = Maps.newHashMap();
         Document doc = crawler.getDocument(urlToVisit, currentPage, sitemap);
         assertNull(doc);
         assertEquals("java.net.UnknownHostException: www.thisdomaindonotexistandshouldcontinuenotexisting.com",
@@ -113,7 +113,7 @@ public class WebCrawlerTest {
         WebCrawler crawler = new WebCrawler(new UserInput());
         String urlToVisit = "http://wiprodigital.com/thispagedonotexistandshouldcontinuenotexisting.html";
         Page currentPage = new Page(urlToVisit);
-        Map<Page, String> sitemap = Maps.newHashMap();
+        Map<String, Page> sitemap = Maps.newHashMap();
         Document doc = crawler.getDocument(urlToVisit, currentPage, sitemap);
         assertNull(doc);
         assertEquals("org.jsoup.HttpStatusException: HTTP error fetching URL. Status=404, " +
@@ -126,7 +126,7 @@ public class WebCrawlerTest {
         WebCrawler crawler = new WebCrawler(new UserInput());
         String urlToVisit = "http://17776-presscdn-0-6.pagely.netdna-cdn.com/wp-content/themes/wiprodigital/images/logo.png";
         Page currentPage = new Page(urlToVisit);
-        Map<Page, String> sitemap = Maps.newHashMap();
+        Map<String, Page> sitemap = Maps.newHashMap();
         Document doc = crawler.getDocument(urlToVisit, currentPage, sitemap);
         assertNull(doc);
         assertEquals("org.jsoup.UnsupportedMimeTypeException: Unhandled content type. " +
