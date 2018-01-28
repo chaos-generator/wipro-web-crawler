@@ -13,19 +13,28 @@ public class WebCrawlerTest {
     @Test
     public void shouldSkipPageTest() {
         Map<Page, String> sitemap = Maps.newHashMap();
-        Page validPage1 = new Page("http://www.wiprodigital.com");
-        Page validPage2 = new Page("http://wiprodigital.com/who-we-are/");
-        Page invalidPage1 = new Page("http://www.wiprodigital.com");
 
         WebCrawler crawler = new WebCrawler();
-        assertFalse(crawler.shouldSkipPage(sitemap, validPage1.getUrl()));
+
+        // Visit first page
+        String firstUrl = "http://www.wiprodigital.com";
+        assertFalse(crawler.alreadyVisited(sitemap, firstUrl));
+
+        // Add page visited to list
+        Page validPage1 = new Page(firstUrl);
         sitemap.put(validPage1, null);
 
-        assertFalse(crawler.shouldSkipPage(sitemap, validPage2.getUrl()));
+        // Visit second page
+        String secondUrl = "http://wiprodigital.com/who-we-are/";
+        assertFalse(crawler.alreadyVisited(sitemap, secondUrl));
+
+        // Add page visited to list
+        Page validPage2 = new Page(secondUrl);
         sitemap.put(validPage2, null);
 
-        assertTrue(crawler.shouldSkipPage(sitemap, validPage1.getUrl()));
-        sitemap.put(invalidPage1, null);
+        // Pages have been visited already
+        assertTrue(crawler.alreadyVisited(sitemap, validPage1.getUrl()));
+        assertTrue(crawler.alreadyVisited(sitemap, validPage2.getUrl()));
     }
 
 }

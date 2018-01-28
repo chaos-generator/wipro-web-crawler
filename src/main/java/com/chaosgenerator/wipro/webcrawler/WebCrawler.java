@@ -5,6 +5,7 @@ import com.chaosgenerator.wipro.webcrawler.pojo.Page;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
@@ -18,8 +19,8 @@ public class WebCrawler {
      *              to the file to save.
      */
     public void crawl(UserInput input) {
-        URL domain = input.getDomainToCrawl();
-        Page home = new Page(domain.toString());
+        URL home = input.getDomainToCrawl();
+        Page homepage = new Page(home.toString());
 
         // Hashmaps have constant time search.
         // I'm using this map instead of a list because of it.
@@ -27,7 +28,7 @@ public class WebCrawler {
 
         // Create list of pages to visit and add home page
         List<String> toVisit = Lists.newArrayList();
-        toVisit.add(home.getUrl());
+        toVisit.add(homepage.getUrl());
 
         // Because the list of URLs will keep increasing for every page visited
         // I'm creating the cursor below, for my loop. This avoids
@@ -36,18 +37,18 @@ public class WebCrawler {
 
         StringBuilder builder = new StringBuilder();
         while (cursor < toVisit.size()) {
-            String url = toVisit.get(cursor);
-            builder.append(String.format("- %s", url));
+            String urlToVisit = toVisit.get(cursor);
+            builder.append(String.format("- %s", urlToVisit));
             cursor++;
 
+            //Skips pages in different domains
+            if (sameDomain(home, urlToVisit)) continue;
+
             // Skips pages already visited.
-            if (shouldSkipPage(sitemap, url)) {
-                continue;
-            }
+            if (alreadyVisited(sitemap, urlToVisit)) continue;
         }
 
         /**
-         * 6. Skip if page has been visited already
          * 7. Download html file
          * 8. Parse html file
          * 9. Extract title from file
@@ -62,7 +63,21 @@ public class WebCrawler {
 
     }
 
-    public boolean shouldSkipPage(Map<Page, String> sitemap, String url) {
+    boolean sameDomain(URL home, String urlToVisit) {
+        URL currentUrl;
+        try {
+            currentUrl = new URL(urlToVisit);
+            if (!currentUrl.getHost().equals(home.getHost())) {
+                return true;
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();//log error and continue
+            return false;
+        }
+        return false;
+    }
+
+    public boolean alreadyVisited(Map<Page, String> sitemap, String url) {
         Page currentPage = new Page(url);
         return sitemap.containsKey(currentPage);
     }
