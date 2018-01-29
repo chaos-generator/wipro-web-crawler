@@ -4,7 +4,7 @@ A web crawler for Wipro interview process.
 ## Exercise Description
 Here are the instructions for the Buildit Platform Engineer exercise:
 
-###What we are looking for
+### What we are looking for
 
 This exercise is to examine your technical knowledge, reasoning and engineering
 principals. There are no tricks or hidden agendas.
@@ -89,7 +89,7 @@ time used to write this to a minimum, I'm using this as a shortcut. Ideally,
 all methods in WebCrawler should be private, except for the crawl method.
  
 ### How to build
-dependencies: 
+Dependencies: 
 - [gradle](https://gradle.org/)
 - [java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
