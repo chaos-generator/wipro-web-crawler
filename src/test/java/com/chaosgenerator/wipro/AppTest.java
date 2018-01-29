@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.PrintStream;
 
 public class AppTest {
@@ -34,7 +35,9 @@ public class AppTest {
 
     @Test
     public void testApp() {
-        String[] args = {"http://www.example.com", "./example.map"};
+        File tmp = new File("./example.map");
+        tmp.deleteOnExit();
+        String[] args = {"http://www.example.com", tmp.getPath()};
         WebCrawler mock = Mockito.mock(WebCrawler.class);
 
         App.main(args);
