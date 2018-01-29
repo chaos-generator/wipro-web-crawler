@@ -64,12 +64,13 @@ public class Page {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder. append(this.url);
-        builder.append(": ");
         if (this.title != null) {
             builder.append(this.title);
+            builder.append(": ");
         }
+        builder. append(this.url);
         if (this.error != null) {
+            builder.append(": ");
             builder.append(this.error);
         }
         return builder.toString();

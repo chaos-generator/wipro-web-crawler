@@ -74,7 +74,7 @@ public class WebCrawler implements Crawler {
             sitemap.put(currentPage.getUrl(), currentPage);
         }
 
-        saveToFile(sitemap, homepage);
+        saveToFile(sitemap, sitemap.get(home.toString()));
     }
 
     public void saveToFile(Map<String, Page> sitemap, Page home) {
@@ -82,44 +82,73 @@ public class WebCrawler implements Crawler {
              BufferedWriter bw = new BufferedWriter(fw)) {
 
             StringBuilder identation = new StringBuilder();
-            identation.append("\t");
+            identation.append("  ");
 
-            writePage(sitemap, home, bw, identation);
+            if (home == null) {
+                return;
+            }
+            sitemap.remove(home);
+
+            bw.write("- ");
+            bw.write(home.toString());
+            bw.newLine();
+
+            if (home.getLinks() == null) {
+                return;
+            }
+
+            for (String s : home.getLinks()) {
+                Page currPage = writePage(sitemap, bw, identation, s);
+                if (currPage == null) continue;
+
+                identation.append("  ");
+
+                for (String link : currPage.getLinks()) {
+                    writePage(sitemap, bw, identation, link);
+                }
+                identation.delete(0, 2);
+                bw.newLine();
+                bw.newLine();
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    void writePage(Map<String, Page> sitemap, Page parent, BufferedWriter bw, StringBuilder identation) throws IOException {
-        bw.write(parent.toString());
-        if (parent.getLinks() == null) {
-            return;
-        }
-        for (String s : parent.getLinks()) {
-            Page currPage = sitemap.get(s);
+    private Page writePage(Map<String, Page> sitemap, BufferedWriter bw, StringBuilder identation, String url) throws IOException {
+        Page currPage = sitemap.get(url);
+        if (currPage == null) {
+            if (Strings.isNullOrEmpty(url)) {
+                return null;
+            }
             bw.write(identation.toString());
-            bw.write(currPage.toString());
+            bw.write("- ");
+            bw.write(url);
             bw.newLine();
-            if (currPage.getLinks() == null) {
-                bw.newLine();
-                bw.newLine();
-                continue;
-            }
-            identation.append("\t");
-            for (String link : currPage.getLinks()) {
-                writePage(sitemap, currPage, bw, identation);
-            }
-            identation.delete(0, 2);
-            bw.newLine();
-            bw.newLine();
+            return null;
         }
+        sitemap.remove(currPage);
+
+        if (Strings.isNullOrEmpty(currPage.toString())) {
+            return null;
+        }
+        bw.write(identation.toString());
+        bw.write("- ");
+        bw.write(currPage.toString());
+        bw.newLine();
+        if (currPage.getLinks() == null) {
+            bw.newLine();
+            bw.newLine();
+            return null;
+        }
+        return currPage;
     }
 
     private void processImages(URL home, Page currentPage, Document doc, Set<String> linksSet) {
         Elements imgs = doc.select("img[src]");
         for (Element image : imgs) {
-            String linkUrl = normaliseAnchorLink(home, image);
+            String linkUrl = normaliseImageLink(home, image);
             if (linkUrl != null) {
                 linksSet.add(linkUrl);
             }
@@ -157,7 +186,7 @@ public class WebCrawler implements Crawler {
     /**
      * Normalises all image links to the full path URL.
      *
-     * @param home the home page url
+     * @param home  the home page url
      * @param image the image element from the html
      * @return string with the normalised full path image.
      */

@@ -34,8 +34,8 @@ public class PageTest {
         page2.setError("404 - Page not found");
         Page page3 = new Page("http://www.google.com");
         page3.setTitle("Google");
-        assertEquals("http://www.wiprodigital.com: home page", page1.toString());
+        assertEquals("home page: http://www.wiprodigital.com", page1.toString());
         assertEquals("http://www.wiprodigital.com/pagenotfound: 404 - Page not found", page2.toString());
-        assertEquals("http://www.google.com: Google", page3.toString());
+        assertEquals("Google: http://www.google.com", page3.toString());
     }
 }

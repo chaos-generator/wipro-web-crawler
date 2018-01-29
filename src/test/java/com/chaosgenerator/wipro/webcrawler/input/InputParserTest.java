@@ -1,4 +1,4 @@
-package com.chaosgenerator.wipro.webcrawler;
+package com.chaosgenerator.wipro.webcrawler.input;
 
 import com.chaosgenerator.wipro.webcrawler.input.InputParser;
 import com.chaosgenerator.wipro.webcrawler.pojo.UserInput;

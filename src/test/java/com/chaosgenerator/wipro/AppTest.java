@@ -1,9 +1,10 @@
-package com.chaosgenerator.wipro.webcrawler;
+package com.chaosgenerator.wipro;
 
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.assertTrue;
 
 import com.chaosgenerator.wipro.App;
+import com.chaosgenerator.wipro.webcrawler.WebCrawler;
 import org.junit.After;
 
 
